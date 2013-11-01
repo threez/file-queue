@@ -1,0 +1,24 @@
+{
+  "name": "file-queue",
+  "version": "0.1.0",
+  "description": "A file system based queue",
+  "main": "queue.js",
+  "scripts": {
+    "test": "mocha test/queue.js"
+  },
+  "dependencies": {
+    "async": "*"
+  },
+  "devDependencies": {
+    "mocha": "1.13.0",
+    "jshint": "*"
+  },
+  "keywords": [
+    "queue",
+    "file",
+    "fs",
+    "directory"
+  ],
+  "author": "Vincent Landgraf",
+  "license": "BSD-2-Clause"
+}
