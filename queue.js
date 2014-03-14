@@ -1,15 +1,19 @@
+/*jslint white: true, indent:2 */
 'use strict';
 var Maildir = require('./lib/maildir').Maildir;
 
 module.exports = {
-  Queue: function(path, callback) {
-    var that = this, laterPop = [];
+  Queue: function(options, cb) {
+    var that = this,
+        laterPop = [],
+        path = typeof options === 'string' ? options : options.path,
+        persistent = (options.persistent === undefined) ? true : options.persistent;
     this.maildir = new Maildir(path);
 
     // be notified, when new messages are available
     this.maildir.on('new', function (messages) {
       var callback = laterPop.shift();
-      if (callback) that.tpop(callback);
+      if (callback) {that.tpop(callback);}
     });
 
     // Pushs one message into the queue
@@ -24,8 +28,8 @@ module.exports = {
           callback(err);
         } else {
           commit(function(err) {
-            if (err) callback(err);
-            else callback(null, message);
+            if (err) {callback(err);}
+            else {callback(null, message);}
           });
         }
       });
@@ -61,8 +65,8 @@ module.exports = {
         } else {
           try {
             callback(null, JSON.parse(data), commit, rollback);
-          } catch(err) {
-            throw "JSONError: Message" + message + " not valid! (" + err + ")";
+          } catch(err2) {
+            throw "JSONError: Message" + message + " not valid! (" + err2 + ")";
           }
         }
       });
@@ -74,7 +78,17 @@ module.exports = {
     // Determines the length of the queue
     this.length = function(callback) { this.maildir.length(callback); };
 
+    // Determines if the directories are being monitored
+    this.isRunning = function () {
+      return !!this.maildir.watcher;
+    };
+
+    // Stops monitoring the queue directories
+    this.stop = function () {
+      this.maildir.stopWatching();
+    };
+
     // Create the queue with the given path
-    this.maildir.create(callback);
+    this.maildir.create(persistent, cb);
   }
 };
