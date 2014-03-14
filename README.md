@@ -1,4 +1,4 @@
-# FS-Queue
+# File-Queue
 
 A simple file system based queuing implementation. Based on the maildir format,
 the queues are lockfree and therefore work in most situatuions. Look
@@ -15,11 +15,11 @@ The queue is created based on a folder. The passed folder will contain have
 three directories `cur`, `tmp` and `new`. The names of the files follow the 
 maildir conventions.
 
-    var queue = new require('fs-queue').Queue('.');
+    var queue = new require('file-queue').Queue('.', callback);
 
-## Pushing and poping messages from the queue
+## Pushing and popping messages from the queue
 
-Poping a message can be done at any time. If the queue doesn't contain at the
+Popping a message can be done at any time. If the queue doesn't contain an item at the
 moment it 'blocks' until it does. If there was an error, while removing the
 message `err` will contain an error message.
 
@@ -37,17 +37,17 @@ left on the device.
 
 ## Getting the length of the queue
 
-The queue lenght can easily be determined with the following call:
+The queue length can easily be determined with the following call:
 
     queue.length(function(err, length) {
       console.log(length);
     });
 
-## Transactional poping
+## Transactional popping
 
 A transactional pop means, that the element is taken from the queue, but will
 not be removed until commit is called. The rollback action makes the item again
-available for poping.
+available for popping.
 
     queue.tpop(function(err, message, commit, rollback) {
       if (Processor.process(message) === true) {
@@ -57,8 +57,8 @@ available for poping.
       }
     });
 
-There can be multiple layers of transactions. Since transactional pops (tpops) don't block the poping in general, there can be multiple inside of each other.
-Downside is, that it can't be assured that the messages are processed in order.
+There can be multiple layers of transactions. Since transactional pops (tpops) don't block the popping in general, there can be multiple inside of each other.
+The downside is that it can't be assured that the messages are processed in order.
 
 ## Clearing
 
