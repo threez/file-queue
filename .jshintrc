@@ -27,7 +27,7 @@
     // with different skill levels.
 
     "bitwise"       : true,     // Prohibit bitwise operators (&, |, ^, etc.).
-    "curly"         : false,    // Require {} for every new block or scope.
+    "curly"         : true,    // Require {} for every new block or scope.
     "eqeqeq"        : true,     // Require triple equals i.e. `===`.
     "forin"         : true,     // Tolerate `for in` loops without `hasOwnPrototype`.
     "immed"         : true,     // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
@@ -120,5 +120,6 @@
         "before",
         "after"
     ],
-    "indent"        : 2         // Specify indentation spacing
+    "indent"        : 2,        // Specify indentation spacing
+    "maxlen"        : 80
 }

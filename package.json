@@ -1,11 +1,11 @@
 {
   "name": "file-queue",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A file system based queue (implemented using maildir)",
   "main": "queue.js",
   "scripts": {
     "test": "istanbul cover node_modules/.bin/_mocha -- -R spec test/**/*",
-    "jshint": "jshint queue.js lib/*.js test/*.js"
+    "jshint": "jshint queue.js lib/*.js test/*.js example/*.js"
   },
   "dependencies": {
     "async": "*"

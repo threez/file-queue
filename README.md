@@ -15,7 +15,8 @@ The queue is created based on a folder. The passed folder will contain have
 three directories `cur`, `tmp` and `new`. The names of the files follow the 
 maildir conventions.
 
-    var queue = new require('file-queue').Queue('.', callback);
+    var Queue = require('file-queue').Queue,
+        queue = new Queue('.', callback);
 
 ## Pushing and popping messages from the queue
 
