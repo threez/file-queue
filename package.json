@@ -1,24 +1,33 @@
 {
   "name": "file-queue",
   "version": "0.1.0",
-  "description": "A file system based queue",
+  "description": "A file system based queue (implemented using maildir)",
   "main": "queue.js",
   "scripts": {
-    "test": "mocha test/queue.js"
+    "test": "istanbul cover node_modules/.bin/_mocha -- -R spec test/**/*",
+    "jshint": "jshint queue.js lib/*.js test/*.js"
   },
   "dependencies": {
     "async": "*"
   },
   "devDependencies": {
     "mocha": "1.13.0",
-    "jshint": "*"
+    "jshint": "*",
+    "istanbul": "0.2.6"
   },
   "keywords": [
     "queue",
     "file",
     "fs",
-    "directory"
+    "maildir",
+    "directory",
+    "lockfree"
   ],
   "author": "Vincent Landgraf",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "url": "https://github.com/threez/file-queue",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/threez/file-queue.git"
+  }
 }

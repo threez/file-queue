@@ -5,3 +5,5 @@ node_modules
 tmp/cur
 tmp/new
 tmp/tmp
+npm-debug.log
+coverage
