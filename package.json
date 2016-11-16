@@ -8,7 +8,8 @@
     "jshint": "jshint queue.js lib/*.js test/*.js example/*.js"
   },
   "dependencies": {
-    "async": "*"
+    "async": "*",
+    "graceful-fs": "*"
   },
   "devDependencies": {
     "mocha": "1.13.0",
