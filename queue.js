@@ -17,6 +17,13 @@ function Queue(options, cb) {
   this.maildir = new Maildir(path);
   this.laterPop = [];
 
+  // determine if different fs access library is used
+  if (typeof options.fs !== 'undefined') {
+    this.maildir.fs = options.fs;
+  } else {
+    this.maildir.fs = require('fs');
+  }
+
   // be notified, when new messages are available
   this.maildir.on('new', function(messages) {
     var callback = that.laterPop.shift();

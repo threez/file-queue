@@ -1,6 +1,6 @@
 {
   "name": "file-queue",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A file system based queue (implemented using maildir)",
   "main": "queue.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "devDependencies": {
     "mocha": "1.13.0",
     "jshint": "*",
-    "istanbul": "0.2.6"
+    "istanbul": "0.2.6",
+    "graceful-fs": "*"
   },
   "keywords": [
     "queue",

@@ -7,7 +7,14 @@ describe('Queue', function() {
   var queue;
 
   beforeEach(function(done) {
-    queue = new Queue('tmp', done);
+    if (Math.random() > 0.5) {
+      queue = new Queue('tmp', done);
+    } else {
+      queue = new Queue({
+        path: 'tmp',
+        fs: require('graceful-fs')
+      }, done);
+    }
   });
 
   afterEach(function(done) {

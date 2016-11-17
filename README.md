@@ -18,6 +18,17 @@ maildir conventions.
     var Queue = require('file-queue').Queue,
         queue = new Queue('.', callback);
 
+### Dealing with many files and common filesystem errors
+
+If you deal with lots of files EMFILE errors (too many open files errors)
+can occur. Issacs wrote the `graceful-fs` package to deal with these errors.
+To use it simply pass the filesystem library that you prefer:
+
+    var queue = new Queue({
+        path: 'tmp',
+        fs: require('graceful-fs')
+    }, done);
+
 ## Pushing and popping messages from the queue
 
 Popping a message can be done at any time. If the queue doesn't contain an item at the
